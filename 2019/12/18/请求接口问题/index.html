@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="工作中请求的方式和传参方式(axios) get 请求1axios.get(url + &#96;?param&#x3D;$&amp;#123;param&amp;#125;&#96;).then(res &#x3D;&amp;gt; &amp;#123;2  console.log(res)3&amp;#125;)   post 请求1.普通的 post 请求 将参数携带在请求体 body 中 1axios.post(url, param).then(res &#x3D;&amp;gt;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-20T14:04:57.359Z">
+<meta property="og:updated_time" content="2020-02-24T10:18:53.188Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -179,7 +179,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.delete(url, &#123; <span class="attr">data</span>: &#123; <span class="attr">id</span>: param &#125; &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
 
 <p>2.传一个数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.delete(url, &#123; <span class="attr">data</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>] &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.delete(url, &#123; <span class="attr">data</span>: &#123; <span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>] &#125; &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
 
       
 
