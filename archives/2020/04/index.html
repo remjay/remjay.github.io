@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>Archives: 2020/4 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2020&#x2F;04&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -143,487 +143,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-vue项目问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/21/vue%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/">vue项目问题</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/21/vue%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/21/vue%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/" class="archive-article-date">
   	<time datetime="2020-04-21T08:31:39.048Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="vue-项目问题"><a href="#vue-项目问题" class="headerlink" title="vue 项目问题"></a>vue 项目问题</h1><ol>
-<li>vue-router 版本不同导致控制台报错</li>
-</ol>
-<ul>
-<li>Uncaught (in promise) undefined</li>
-<li>在 vue-router 版本在&gt;=3.1 的时候,在使用 push()和 replace()进行编程式跳转的时候会导致控制台抛出异常,起原因是在 vue-router&gt;=3.1 的版本中返回了 promise,而你所写的方法后面没有用 catch()来捕获异常,就会导致路由在跳转的时候抛出异常,所以我们可以将其异常捕获就可解决这个异常.</li>
-<li>方法一: 在使用方法的时候捕获异常</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">router.push(<span class="string">'/'</span>).catch(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;)</span></pre></td></tr></table></figure>
-
-<ul>
-<li>方法二: 全局配置 push()或 replace()的异常捕获</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routerMethods = [<span class="string">'push'</span>, <span class="string">'replace'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">routerMethods.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> orginMethods = VueRouter.prototype[item]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  VueRouter.prototype[item] = <span class="function"><span class="keyword">function</span> (<span class="params">location, onResolve, onReject</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (onResolve || onReject)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">return</span> orginMethods.call(<span class="keyword">this</span>, location, onResolve, onReject)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> orginMethods.call(<span class="keyword">this</span>, location).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> err)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在 axios 的全局拦截中 由于后端定义字段可能大小写不一样 做兼容</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/21/vue%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ui组件的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/13/ui%E7%BB%84%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/">ui组件的问题</a>
+      <a class="archive-article-title" href="/2020/04/21/vue%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/">vue项目问题</a>
     </h1>
   
 
-        
-        <a href="/2020/03/13/ui%E7%BB%84%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-03-13T07:35:06.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UI-组件遇到的问题"><a href="#UI-组件遇到的问题" class="headerlink" title="UI 组件遇到的问题"></a>UI 组件遇到的问题</h1><h3 id="Element-Ui"><a href="#Element-Ui" class="headerlink" title="Element-Ui"></a>Element-Ui</h3><ol>
-<li>table tree 结构使用问题</li>
-</ol>
-<ul>
-<li>在 table 组件中的每一栏可能存在子集,当点开没父级栏的时候就请求接口获取对应父级下的子集数据.你会发现 elementui 的 table 组件中有这样的支持,按照上面的实例,你可以很快完成这个需求,但在动态数据的时候,就会发现此事有蹊跷.</li>
-<li>按照上面的实例,我们需要在 table 组件的 el-table 中添加属性:tree-props=”{children: ‘children’, hasChildren: ‘hasChildren’}”、lazy、:load=”load”、row-key=”id”.</li>
-<li>添加完成后 根据实例的数据,你很快就实现了,但是当你要通过请求接口的方式展开某个父级的子集,你就会发现 load 这个属性中根本没有与父级关联的信息,那他是通过什么关联的了?</li>
-<li>仔细阅读一下说明,就会发现 row-key 就是对应父级的 id,找到该 id 了有什么用了?</li>
-<li>其实官方文档的实例缺少一个属性 expand-row-keys 这个属性值就是用来存储这个父级 id 的</li>
-<li>这样你就很容易实现对应父级懒加载子集的功能了,如果后端不给你唯一 id,你可能点头痛 那就是 row-key 这个唯一怎样实现了</li>
-<li>来一串随机数或者一串数字字母的,岂不美滋滋 实现: 1-Math.random().slice(-8) 2-Math.random().toString(36).slice(-8)</li>
-<li>最后我们请求到的数据将其调用 resolve()方法放入子集数组,并将父 id 存入 expand-row-keys 数组中.</li>
-<li>开开心心下班了!!!!</li>
-</ul>
-<ol start="2">
-<li>select 选择器问题 下拉 option 的展示</li>
-</ol>
-<ul>
-<li>当我们在使用 select 选择器的时候 可能遇到下拉 option 的显示过长导致下拉的宽度过宽造成超出页面长度,从而阻碍用户的阅览</li>
-<li>通过 element 官方文档 popper-class 这个属性可以给 Select 下拉框的类名 但当你用了 style 的 scoped 属性时,那你会发现根本没有什么效果</li>
-<li>官方文档都没有提起,最后百度一下才知道,这个 class 类名必须是全局的类 所以去掉 style 的私有属性 scoped 就可以解决这个问题</li>
-</ul>
-<ol start="3">
-<li>upload 上传 http-request 问题</li>
-</ol>
-<ul>
-<li>在做文件上传的时候,后端可能叫你 post 传文件的字段名有变化,这就需要自定义的上传方式</li>
-<li>自定义的方式我们需要吧 ation 这个属性置为’’ 可能上传还需要 headers 头部信息的设置 将其设置好了</li>
-<li>http-request 属性上获取当前文件传入的信息 做符合业务的拦截判断</li>
-<li>new FormData()对象,将其文件传入字段与文件 append 加入进去</li>
-<li>下一步就可以开开心心发请求 获取服务器的响应了</li>
-</ul>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/13/ui%E7%BB%84%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-webpack打包编译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/12/webpack%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91/">webpack打包编译</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/12/webpack%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91/" class="archive-article-date">
-  	<time datetime="2020-02-12T13:32:13.749Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="webpack-打包编译学习"><a href="#webpack-打包编译学习" class="headerlink" title="webpack 打包编译学习"></a>webpack 打包编译学习</h1><ol>
-<li>幼儿园起步</li>
-</ol>
-<ul>
-<li>进入目标文件夹,初始化 package.json 文件 (npm init)</li>
-<li>装 webpack 包 (npm i webpack webpack-cli -D)<br><code>--save(-S) --save-dev(-D) 的区别 -S是项目本身使用的依赖包,-D则是项目构建打包所需的依赖包</code></li>
-<li>创建 src 文件夹,里面创建入口文件 index.js<br><code>由于webpack采用约定大于配置的想法,所以在入口文件上面是默认./src下面的index.js文件 输出文件则是./dist下面的mian.js</code></li>
-<li>用 cli 运行本地的 webpack 不方便,我们就在 package.json 文件中的 script 对象中配置打包方式<br><code>例如build:webpack</code></li>
-</ul>
-<ol start="2">
-<li>webpack.config.json 配置说明</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// mode 配置用于提供模式配置选项告诉webpack相应地使用其内置的优化</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// development开发  production生产 none</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 作用:运用于开发和生产的接口区分</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">//例子: 会将 process.env.NODE_ENV 的值设为 development</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// mode: 'development',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 应用程序的入口</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 单页应用(SPA)：一个入口起点，多页应用(MPA)：多个入口起点。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 单页面应用框架(vue,react,angular)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 这里应用程序开始执行 webpack 开始打包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  entry: <span class="string">'./src/index.js'</span>, <span class="comment">//命名式</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// entry: () =&gt; './demo' //动态入口</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// webpack输出结果的配置选项</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  output: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 打包输出文件路径,必须是绝对路径</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 入口分块(entry chunk)的文件名模板</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    filename: <span class="string">'bundle.js'</span>, <span class="comment">//string</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// filename: "[name].js", // 用于多个入口点(entry point)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// filename: "[chunkhash].js", // 用于长效缓存</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// filename: "[name].[hash].bundle.js"  //使用每次构建过程中，唯一的 hash 生成</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 按需加载(on-demand-load)或加载外部资源(external resources)(如图片、文件等)的文件路径</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// url 相对于 HTML 页面 路径要求</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    publicPath: <span class="string">'./assets/'</span>, <span class="comment">//解析在html文件同级的assets文件夹</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 导出库(exported library)的名称 与libraryTarget配合使用</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    library: <span class="string">'myDemo'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 导出库(exported library)的类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    libraryTarget: <span class="string">'umd2'</span> <span class="comment">// 通用模块定义</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "commonjs2", // exported with module.exports</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "commonjs-module", // 使用 module.exports 导出</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "commonjs", // 作为 exports 的属性导出</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "amd", // 使用 AMD 定义方法来定义</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "this", // 在 this 上设置属性</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "var", // 变量定义于根作用域下</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "assign", // 盲分配(blind assignment)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "window", // 在 window 对象上设置属性</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "global", // property set to global object</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// libraryTarget: "jsonp", // jsonp wrapper</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 关于模块的配置</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">module</span>: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 模块规则</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">    rules: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 正则匹配后缀名为.jsx的文件</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// test 和 include 具有相同的作用，都是必须匹配选项</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// exclude 是必不匹配选项（优先于 test 和 include）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 在这三个属性使用中,尽量避免excloude的属性设置</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">        test: <span class="regexp">/\.jsx?$/</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">        incloude: [path.resolve(__dirname, <span class="string">'app'</span>)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">        excloude: [path.resolve(__dirname, <span class="string">'app/demo_files'</span>)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 规则导入属性名</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">        issuer: &#123; test, incloude, excloude &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 如果你不是按照顺序来写loader的话就,需要调整loader加载顺序</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 因为loader是一个一个顺序加载</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">        enforce: <span class="string">'pre'</span>, <span class="comment">//首先加载</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// enforce:'post'//最后加载</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">//在项目中应该应用的loader</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">        loader: <span class="string">'babel-loader'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 每个入口指定一个loader</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">        use: [<span class="string">'style-loader'</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// loader的可选项</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line">        options: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">          <span class="comment">// 预装</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">          presets: [<span class="string">'es2015'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 解析的配置(不适用loader的解析)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">84</span></pre></td><td class="code"><pre><span class="line">  resolve: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">85</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 查找模块目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">86</span></pre></td><td class="code"><pre><span class="line">    modules: [<span class="string">'node_modules'</span>, path.resolve(__dirname, <span class="string">'app'</span>)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">87</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">88</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 模块别名列表</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">89</span></pre></td><td class="code"><pre><span class="line">    alias: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">90</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// 就是路径中的module/src/path能访问  new-module/src/path也同样能访问</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">91</span></pre></td><td class="code"><pre><span class="line">      <span class="built_in">module</span>: <span class="string">'new-module'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">92</span></pre></td><td class="code"><pre><span class="line">      <span class="string">'@'</span>: resolve(<span class="string">'src'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">93</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">94</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//读取那个json文件 默认读取package.json文件</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">95</span></pre></td><td class="code"><pre><span class="line">    descriptionFiles: [<span class="string">'package.json'</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">96</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 读取json文件中的,那个属性,是导出模块的 默认"browser", "module", "main"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">97</span></pre></td><td class="code"><pre><span class="line">    mainfiled: [<span class="string">'browser'</span>, <span class="string">'module'</span>, <span class="string">'main'</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">98</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 应用解析器的附加插件</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">99</span></pre></td><td class="code"><pre><span class="line">    plugins: []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">100</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">101</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">102</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">//默认启动webpack所在的当前目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">103</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// entry相对此目录进行打包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">104</span></pre></td><td class="code"><pre><span class="line">  context: __dirname,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">105</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">106</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 告知webpack构建成什么环境下的代码,默认web 可选node等</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">107</span></pre></td><td class="code"><pre><span class="line">  target: <span class="string">'web'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">108</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">109</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 不需要将其打包,而是在运行环境中请求</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">110</span></pre></td><td class="code"><pre><span class="line">  externals: [<span class="string">'react'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">111</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>webpack 官方文档的坑</li>
-</ol>
-<ul>
-<li>在使用 clean-webpack-plugin 插件中,按照官方文档你会在打包时发生报错,因为别人的插件包已经更新了,用法上面也做了一定的调整</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 每次打包自动清理./dist目录下的文件</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在新的clean-webpack-plugin中我们需解构来获取构造函数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  plugin: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 在webpack4.x里面默认配置了在绝对路径下的dist文件夹中清理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/12/webpack%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Object内置方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/19/Object%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/">Object内置方法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/19/Object%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-01-19T07:50:18.600Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><ol>
-<li>Object 深拷贝<br>有时你会遇见一个很 cai 的后端,他只会查查数据库,将其数据返回,最后你可能想怼他,但是在任务时间面前,你可能选择直接前端实现业务逻辑,在数据的处理中,我们有时就会遇见 Object 深拷贝的问题</li>
-</ol>
-<ul>
-<li>方法一:JOSN 方法处理</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(Obj))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//但当属性值undefined、function、symbol就会造成属性值得丢失</span></span></pre></td></tr></table></figure>
-
-<ul>
-<li>方法二:自己写个深拷贝方法</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">Obj</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> newObj = <span class="built_in">Array</span>.isArray(Obj) ? [] : &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> Obj) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (Obj.hasOwnProperty(key)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> Obj[key] === <span class="string">'object'</span> &amp;&amp; Obj[key] !== <span class="literal">null</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        newObj[key] = deepCopy(Obj[key]) <span class="comment">//递归复制</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        newObj[key] = Obj[key]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> newObj</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/19/Object%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Array内置方法与遇到问题的解决" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/20/Array%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95%E4%B8%8E%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3/">Array内置方法与遇到问题的解决</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/20/Array%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95%E4%B8%8E%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3/" class="archive-article-date">
-  	<time datetime="2019-12-20T14:10:08.281Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h1><ol>
-<li>Array 深拷贝&amp;浅拷贝<br>element-ui 的 table 组件中,我们有时候要将 table 的数据全部获取到,去打印 table 的字段,但 table 的组件的各字段有的可能需要字典的支持,所以在我们要打印的时候就需要将数据做一层处理,来符合展示的要求</li>
-</ol>
-<p>首先我们通过拷贝获取到 table 组件的 json 数据,通过 Array.map()实现过滤的数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先我想到是es6的扩展运算符,来复制数组</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newArr = [...arr]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arr === newArr) <span class="comment">//false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这就实现了数组的深拷贝，这仅仅是个一维数组</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面我们来试试多维数组</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrTwo = [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">2</span>, <span class="number">5</span>], [<span class="number">5</span>, <span class="number">6</span>, [<span class="number">5</span>]]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newArrTwo = [...arrTwo]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arrTwo === newArrTwo) <span class="comment">//同样是false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 但如果我们是后端返回的数组对象的数据了</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrThree = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">8</span> &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#123; <span class="attr">c</span>: <span class="number">10</span>, <span class="attr">a</span>: <span class="number">0</span>, <span class="attr">b</span>: <span class="number">8</span> &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newArrThree = [...arrThree]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arrThree === newArrThree) <span class="comment">//也是false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 但当你想比较两个数组中对象的属性值  你就会发现一个小问题</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arrThree[<span class="number">0</span>].a === newArrThree[<span class="number">0</span>].a) <span class="comment">//你就会惊奇的发现这会返回一个true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// -------------------陷入沉思中---------------------------</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最后证实扩展运算符是一种浅拷贝  这些只深复制了基本类型数据类型 在数组包对象的里面 是行不通的</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最后别人教我一招 最简单的</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nArrThree = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(arrThree))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这样就可以实现我们数组对象的深拷贝</span></span></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Array 常用 api 方法</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/20/Array%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95%E4%B8%8E%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-请求接口问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/18/%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3%E9%97%AE%E9%A2%98/">请求接口问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/18/%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2019-12-18T10:07:32.773Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="工作中请求的方式和传参方式-axios"><a href="#工作中请求的方式和传参方式-axios" class="headerlink" title="工作中请求的方式和传参方式(axios)"></a>工作中请求的方式和传参方式(axios)</h1><hr>
-<h3 id="get-请求"><a href="#get-请求" class="headerlink" title="get 请求"></a>get 请求</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.get(url + <span class="string">`?param=<span class="subst">$&#123;param&#125;</span>`</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="post-请求"><a href="#post-请求" class="headerlink" title="post 请求"></a>post 请求</h3><p>1.普通的 post 请求 将参数携带在请求体 body 中</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.post(url, param).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<p>2.像 get 请求传参的方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.post(url + <span class="string">`?param=<span class="subst">$&#123;param&#125;</span>`</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="delete-请求"><a href="#delete-请求" class="headerlink" title="delete 请求"></a>delete 请求</h3><p>1.传单个字段</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.delete(url, &#123; <span class="attr">data</span>: &#123; <span class="attr">id</span>: param &#125; &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<p>2.传一个数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">axios.delete(url, &#123; <span class="attr">data</span>: &#123; <span class="attr">ids</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>] &#125; &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/18/%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -645,9 +205,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

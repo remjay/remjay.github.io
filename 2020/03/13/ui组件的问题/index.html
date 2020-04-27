@@ -8,14 +8,14 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ui组件的问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UI 组件遇到的问题Element-Ui 在有些时候我们可能会遇到一个 demand   在 table 组件中的每一栏可能存在子集,当点开没父级栏的时候就请求接口获取对应父级下的子集数据.你会发现 elementui 的 table 组件中有这样的支持,按照上面的实例,你可以很快完成这个需求,但在动态数据的时候,就会发现此事有蹊跷. 按照上面的实例,我们需要在 table 组件的 el-tabl">
+  <meta name="description" content="UI 组件遇到的问题Element-Ui table tree 结构使用问题   在 table 组件中的每一栏可能存在子集,当点开没父级栏的时候就请求接口获取对应父级下的子集数据.你会发现 elementui 的 table 组件中有这样的支持,按照上面的实例,你可以很快完成这个需求,但在动态数据的时候,就会发现此事有蹊跷. 按照上面的实例,我们需要在 table 组件的 el-table 中添">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ui组件的问题">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;13&#x2F;ui%E7%BB%84%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="UI 组件遇到的问题Element-Ui 在有些时候我们可能会遇到一个 demand   在 table 组件中的每一栏可能存在子集,当点开没父级栏的时候就请求接口获取对应父级下的子集数据.你会发现 elementui 的 table 组件中有这样的支持,按照上面的实例,你可以很快完成这个需求,但在动态数据的时候,就会发现此事有蹊跷. 按照上面的实例,我们需要在 table 组件的 el-tabl">
+<meta property="og:description" content="UI 组件遇到的问题Element-Ui table tree 结构使用问题   在 table 组件中的每一栏可能存在子集,当点开没父级栏的时候就请求接口获取对应父级下的子集数据.你会发现 elementui 的 table 组件中有这样的支持,按照上面的实例,你可以很快完成这个需求,但在动态数据的时候,就会发现此事有蹊跷. 按照上面的实例,我们需要在 table 组件的 el-table 中添">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-13T08:17:23.558Z">
+<meta property="og:updated_time" content="2020-04-26T08:45:54.229Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -165,7 +165,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="UI-组件遇到的问题"><a href="#UI-组件遇到的问题" class="headerlink" title="UI 组件遇到的问题"></a>UI 组件遇到的问题</h1><h3 id="Element-Ui"><a href="#Element-Ui" class="headerlink" title="Element-Ui"></a>Element-Ui</h3><ol>
-<li>在有些时候我们可能会遇到一个 demand</li>
+<li>table tree 结构使用问题</li>
 </ol>
 <ul>
 <li>在 table 组件中的每一栏可能存在子集,当点开没父级栏的时候就请求接口获取对应父级下的子集数据.你会发现 elementui 的 table 组件中有这样的支持,按照上面的实例,你可以很快完成这个需求,但在动态数据的时候,就会发现此事有蹊跷.</li>
@@ -177,6 +177,24 @@
 <li>来一串随机数或者一串数字字母的,岂不美滋滋 实现: 1-Math.random().slice(-8) 2-Math.random().toString(36).slice(-8)</li>
 <li>最后我们请求到的数据将其调用 resolve()方法放入子集数组,并将父 id 存入 expand-row-keys 数组中.</li>
 <li>开开心心下班了!!!!</li>
+</ul>
+<ol start="2">
+<li>select 选择器问题 下拉 option 的展示</li>
+</ol>
+<ul>
+<li>当我们在使用 select 选择器的时候 可能遇到下拉 option 的显示过长导致下拉的宽度过宽造成超出页面长度,从而阻碍用户的阅览</li>
+<li>通过 element 官方文档 popper-class 这个属性可以给 Select 下拉框的类名 但当你用了 style 的 scoped 属性时,那你会发现根本没有什么效果</li>
+<li>官方文档都没有提起,最后百度一下才知道,这个 class 类名必须是全局的类 所以去掉 style 的私有属性 scoped 就可以解决这个问题</li>
+</ul>
+<ol start="3">
+<li>upload 上传 http-request 问题</li>
+</ol>
+<ul>
+<li>在做文件上传的时候,后端可能叫你 post 传文件的字段名有变化,这就需要自定义的上传方式</li>
+<li>自定义的方式我们需要吧 ation 这个属性置为’’ 可能上传还需要 headers 头部信息的设置 将其设置好了</li>
+<li>http-request 属性上获取当前文件传入的信息 做符合业务的拦截判断</li>
+<li>new FormData()对象,将其文件传入字段与文件 append 加入进去</li>
+<li>下一步就可以开开心心发请求 获取服务器的响应了</li>
 </ul>
 
       
@@ -249,6 +267,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/04/21/vue%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vue项目问题
+        
+      </div>
+    </a>
   
   
     <a href="/2020/02/12/webpack%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91/" id="article-nav-older" class="article-nav-link-wrap">
