@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="vue 项目问题 vue-router 版本不同导致控制台报错   Uncaught (in promise) undefined 在 vue-router 版本在&amp;gt;&#x3D;3.1 的时候,在使用 push()和 replace()进行编程式跳转的时候会导致控制台抛出异常,起原因是在 vue-router&amp;gt;&#x3D;3.1 的版本中返回了 promise,而你所写的方法后面没有用 catch()来捕">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-26T08:51:23.218Z">
+<meta property="og:updated_time" content="2020-05-08T09:11:01.195Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -182,6 +182,18 @@
 <ol start="2">
 <li>在 axios 的全局拦截中 由于后端定义字段可能大小写不一样 做兼容</li>
 </ol>
+<ul>
+<li>兼容方法:</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toLow</span>(<span class="params">option</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> option !== <span class="string">'object'</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="string">'输入参数不符合要求'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> keys = <span class="built_in">Object</span>.keys(option)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> value = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> v <span class="keyword">in</span> option) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    value.push(option[v])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> newObj = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    newObj[keys[i].toLocaleLowerCase()] = value[i]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> newObj</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>vue 手动绑定 v-model 监听对象</li>
+</ol>
+<ul>
+<li>有些时候你的 v-model 是依据后台所返字段,来进行 v-model 来绑定的,但在 vue 中是无法在实例对象中新增的属性来进行双向数据绑定的,这时我们就需要用到手动的绑定动态的属性</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$<span class="keyword">set</span>(argObj, objNature, val)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">// argObj 动态对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">// objNature 给对象赋值的新属性</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">// val 新属性的值</span></pre></td></tr></table></figure>
 
       
 
@@ -253,6 +265,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/05/08/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0js/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深入学习js
+        
+      </div>
+    </a>
   
   
     <a href="/2020/03/13/ui%E7%BB%84%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
