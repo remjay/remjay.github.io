@@ -4,11 +4,24 @@
   
     
     <entry>
+      <title>element 组件使用注意</title>
+      <link href="/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/"/>
+      <url>/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="表格多选分页问题"><a href="#表格多选分页问题" class="headerlink" title="表格多选分页问题"></a>表格多选分页问题</h3><p>翻页时候,让表格多选记住上页的已选数据</p><ol><li>首先我们需要给table组件上加上 <code>row-key</code> 属性绑定数据的唯一键</li><li>在多选组件上加上 <code>reserve-selection</code> 并绑定true</li><li>在table组件上加上 <code>selection-change</code> 方法 这样就实现了分页记住上页的勾选数据<br>但这可仅仅不够,我们可能需要获取后台的数据,来实现回显</li><li>我们获取到后端数据库存的已选id,由于存在分页,所以当某页有所选id时就让其回显</li><li>先将所有的已选id存储在另一个变量中</li><li>表格行的回显,只能一行一行回显 通过table <code>toggleRowSelection</code> 方法来回显,这方法只能通过找到表格数据需要选中的行,将其设置成true就能将其回显</li><li>当回显过后,就将存储所有已选id的变量中删除对应元素</li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>随便写点</title>
       <link href="/2021/08/21/notes/"/>
       <url>/2021/08/21/notes/</url>
       
-        <content type="html"><![CDATA[<h4 id="css单位"><a href="#css单位" class="headerlink" title="css单位"></a>css单位</h4><p>  分为两种绝对长度与相对长度</p><ul><li>绝对长度<ol><li>px 像素 像素是相对于屏幕分辨率的,页面按照精确像素展示,不会因其他元素的变化而变化</li><li>in 英寸 在css领域中,直接被映射成像素 1in===96px</li><li>cm 厘米 映射成像素 1cm=37.8px</li><li>mm 毫米 映射成像素 1mm=3.78px</li><li>pt </li><li>pc  pc=12pt</li></ol></li><li>相对长度<ol><li>rem</li><li>vm</li><li>vh</li></ol></li></ul>]]></content>
+        <content type="html"><![CDATA[<h3 id="css单位"><a href="#css单位" class="headerlink" title="css单位"></a>css单位</h3><p>  分为两种绝对长度与相对长度</p><ul><li>绝对长度<ol><li>px 像素 像素是相对于屏幕分辨率的,页面按照精确像素展示,不会因其他元素的变化而变化</li><li>in 英寸 在css领域中,直接被映射成像素 1in===96px</li><li>cm 厘米 映射成像素 1cm=37.8px</li><li>mm 毫米 映射成像素 1mm=3.78px</li><li>pt 点 (1pt = 1/72 of 1in)</li><li>pc 派卡 (1pc = 12 pt)</li></ol></li><li>相对长度<ol><li>rem 相对于根元素的字体大小（font-size）</li><li>vw 相对于视口*宽度的 1%</li><li>vh 相对于视口*高度的 1%</li><li>em 相对于元素的字体大小（font-size）（2em 表示当前字体大小的 2 倍）</li><li>% 相对于父元素</li></ol></li></ul>]]></content>
       
       
       
