@@ -22,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>随便写点 - wjchen&#39;s | blog</title>
+  <title>HTML学习笔记 - wjchen&#39;s | blog</title>
   
 
   
@@ -430,7 +430,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        随便写点
+        HTML学习笔记
       </h1>
       <div class='new-meta-box'>
         
@@ -454,7 +454,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2021年8月21日</p>
+    <p>发布于：2021年11月10日</p>
   </a>
 </div>
 
@@ -465,7 +465,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="随便写点" data-path="/2021/08/21/notes/">
+      <div id="lc-pv" data-title="HTML学习笔记" data-path="/2021/11/10/HTML-study/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -483,26 +483,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="css单位"><a href="#css单位" class="headerlink" title="css单位"></a>css单位</h3><p>  分为两种绝对长度与相对长度</p>
-<ul>
-<li>绝对长度<ol>
-<li>px 像素 像素是相对于屏幕分辨率的,页面按照精确像素展示,不会因其他元素的变化而变化</li>
-<li>in 英寸 在css领域中,直接被映射成像素 1in===96px</li>
-<li>cm 厘米 映射成像素 1cm=37.8px</li>
-<li>mm 毫米 映射成像素 1mm=3.78px</li>
-<li>pt 点 (1pt = 1/72 of 1in)</li>
-<li>pc 派卡 (1pc = 12 pt)</li>
+  <h4 id="a-标签的五种使用方法"><a href="#a-标签的五种使用方法" class="headerlink" title="a 标签的五种使用方法"></a>a 标签的五种使用方法</h4><ol>
+<li>页面跳转(herf设置地址)<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;http://www.baidu.com&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>锚点链接(herf里面#号开头)<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;#zj&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>下载文件(herf填入资源链接地址,并设置download属性设置下载文件名)<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;http://www.baidu.com/img/bd_logo1.png&#x27;</span> <span class="attr">download</span>=<span class="string">&#x27;百度图片.png&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>创建email链接 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;mailto:1727482593@qq.com&#x27;</span>&gt;</span>发邮件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>创建Tel链接<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;tel:12345678&#x27;</span>&gt;</span>拨打电话<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-</li>
-<li>相对长度<ol>
-<li>rem 相对于根元素的字体大小（font-size）</li>
-<li>vw 相对于视口*宽度的 1%</li>
-<li>vh 相对于视口*高度的 1%</li>
-<li>em 相对于元素的字体大小（font-size）（2em 表示当前字体大小的 2 倍）</li>
-<li>% 相对于父元素</li>
-</ol>
-</li>
-</ul>
 
   
   
@@ -510,21 +497,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='footer'>
       
       
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
-
-              
-            
-              
-                <p>本文永久链接是：<a href=http://example.com/2021/08/21/notes/>http://example.com/2021/08/21/notes/</a></p>
-              
-            
-          </blockquote>
-        </div>
       
       
     </div>
@@ -537,10 +509,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-26T11:11:53+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-11T17:56:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年8月26日</p>
+    <p>更新于：2021年11月11日</p>
   </a>
 </div>
 
@@ -559,7 +531,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/08/21/notes/&title=随便写点 - wjchen's | blog&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/11/10/HTML-study/&title=HTML学习笔记 - wjchen's | blog&summary="
           
           >
           
@@ -571,7 +543,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/08/21/notes/&title=随便写点 - wjchen's | blog&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/11/10/HTML-study/&title=HTML学习笔记 - wjchen's | blog&summary="
           
           >
           
@@ -583,7 +555,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/08/21/notes/&title=随便写点 - wjchen's | blog&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/11/10/HTML-study/&title=HTML学习笔记 - wjchen's | blog&summary="
           
           >
           
@@ -613,18 +585,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>element 组件使用注意</p>
-          <p class='content'>表格多选分页问题翻页时候,让表格多选记住上页的已选数据
-
-首先我们需要给table组件上加上 row-key 属性绑定数据的唯一键
-在多选组件上加上 reserve-selection 并绑定t...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/08/21/hello-world/'>
-          <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
+        <a class='next' href='/2021/11/10/JS-study/'>
+          <p class='title'>JS学习笔记<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>判断数据类型的方法typeof
+区分数据类型可以区分7种数据类型:string,number,boolean,object,undefined,function 和es6新增的symbol
+注意...</p>
         </a>
       
     </div>
@@ -667,7 +633,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#css%E5%8D%95%E4%BD%8D"><span class="toc-text">css单位</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BA%94%E7%A7%8D%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">a 标签的五种使用方法</span></a></li></ol>
     </div>
   </section>
 
@@ -686,7 +652,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="随便写点";
+  pdata.postTitle="HTML学习笔记";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要

@@ -447,20 +447,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/">
-        element 组件使用注意
+      <a href="/2021/08/27/vue%E5%85%A8%E5%AE%B6%E6%A1%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/">
+        vue全家桶使用注意
       </a>
     </h2>
   
   <div class='md'>
     
       
-        表格多选分页问题翻页时候,让表格多选记住上页的已选数据
-
-首先我们需要给table组件上加上 row-key 属性绑定数据的唯一键
-在多选组件上加上 reserve-selection 并绑定true
-在table组件上加上 selection-change 方法 这样就实现了分页记住上页的勾选数据但这可仅仅不够,我们可能需要获取后台的数据,来实现回显
-我们获取到后端数据库存的已选id,由于...
+        $set的使用vue是数据驱动视图更新的,但在没给数据双向绑定和data层级的非简单数据类型,就会存在视图无法更新的情况,这就用到$set来实现视图的更新.
+12this.$set(target,propertyName,value)// 来实现视图的更新
+组件间通讯方式
+父传子父子间组件通讯是 父组件通过v-bind给子组件绑定自定义属性,传通讯信息 子组件通过props接收父组件绑定的自...
       
     
   </div>
@@ -468,15 +466,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-          
-          <a class='avatar' href='/'><img src=''></a>
-        
-        <time>2021-08-26</time>
+        <time>2021-08-27</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/'>
+          <a class='readmore' href='/2021/08/27/vue%E5%85%A8%E5%AE%B6%E6%A1%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/'>
             阅读全文
           </a>
         </div>
@@ -498,25 +493,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title" >
-      <a href="/2021/08/21/notes/">
-        随便写点
+      <a href="/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/">
+        element 组件使用注意
       </a>
     </h2>
   
   <div class='md'>
     
       
-        css单位  分为两种绝对长度与相对长度
+        表格多选分页问题翻页时候,让表格多选记住上页的已选数据
 
-绝对长度
-px 像素 像素是相对于屏幕分辨率的,页面按照精确像素展示,不会因其他元素的变化而变化
-in 英寸 在css领域中,直接被映射成像素 1in===96px
-cm 厘米 映射成像素 1cm=37.8px
-mm 毫米 映射成像素 1mm=3.78px
-pt 点 (1pt = 1/72 of 1in)
-pc 派卡 (1pc = 12 pt)
-
-...
+首先我们需要给table组件上加上 row-key 属性绑定数据的唯一键
+在多选组件上加上 reserve-selection 并绑定true
+在table组件上加上 selection-change 方法 这样就实现了分页记住上页的勾选数据但这可仅仅不够,我们可能需要获取后台的数据,来实现回显
+我们获取到后端数据库存的已选id,由于...
       
     
   </div>
@@ -524,15 +514,12 @@ pc 派卡 (1pc = 12 pt)
     <div class='meta-v3' line_style='solid'>
       <div>
         
-          
-          <a class='avatar' href='/'><img src=''></a>
-        
-        <time>2021-08-21</time>
+        <time>2021-08-26</time>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2021/08/21/notes/'>
+          <a class='readmore' href='/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/'>
             阅读全文
           </a>
         </div>
@@ -570,9 +557,6 @@ Qu...
   
     <div class='meta-v3' line_style='solid'>
       <div>
-        
-          
-          <a class='avatar' href='/'><img src=''></a>
         
         <time>2021-08-21</time>
         
