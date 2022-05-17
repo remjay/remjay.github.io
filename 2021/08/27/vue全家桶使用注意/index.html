@@ -483,9 +483,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h3 id="set的使用"><a href="#set的使用" class="headerlink" title="$set的使用"></a>$set的使用</h3><p>vue是数据驱动视图更新的,但在没给数据双向绑定和data层级的非简单数据类型,就会存在视图无法更新的情况,这就用到$set来实现视图的更新.</p>
+  <h5 id="set的使用"><a href="#set的使用" class="headerlink" title="$set的使用"></a>$set的使用</h5><p>vue是数据驱动视图更新的,但在没给数据双向绑定和data层级的非简单数据类型,就会存在视图无法更新的情况,这就用到$set来实现视图的更新.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$set(target,propertyName,value)</span><br><span class="line"><span class="comment">// 来实现视图的更新</span></span><br></pre></td></tr></table></figure>
-<h3 id="组件间通讯方式"><a href="#组件间通讯方式" class="headerlink" title="组件间通讯方式"></a>组件间通讯方式</h3><ol>
+<h5 id="组件间通讯方式"><a href="#组件间通讯方式" class="headerlink" title="组件间通讯方式"></a>组件间通讯方式</h5><ol>
 <li>父传子<br>父子间组件通讯是 父组件通过v-bind给子组件绑定自定义属性,传通讯信息 子组件通过<code>props</code>接收父组件绑定的自定义属性值<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;children :msg=&#x27;info&#x27;&gt;&lt;/children&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Children from &#x27;@/components/Children.vue&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#x27;App&#x27;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      info: &#x27;你是我的儿子&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Children</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//  子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;这是父组件的信息:&#123;&#123;msg&#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#x27;children&#x27;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    msg: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &#x27;&#x27;,//默认值</span><br><span class="line">      require: true//是否必填</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
 <li>子传父<br>子组件通讯父组件是通过自定义事件来收子组件的值 子组件通过<code>$emit(组件自定义方法,要给父组件信息)</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;p&gt;这是儿子给我的信,信里写到: &#123;&#123;info&#125;&#125; &lt;/p&gt;</span><br><span class="line">    &lt;children @info=&#x27;getLetter&#x27;&gt;&lt;/children&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Children from &#x27;@/components/Children.vue&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#x27;App&#x27;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      info: &#x27;&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getLetter(content) &#123;</span><br><span class="line">      this.info = content</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Children</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
@@ -495,6 +495,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 组件2</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;这是children给我的消息:&#123;&#123;info&#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#x27;brother&#x27;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      info: &#x27;&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    this.bus.$on(&#x27;getMsg&#x27;, value =&gt; &#123;</span><br><span class="line">      this.info = value</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
 <li>vuex 状态管理<br>对于兄弟组件和更为复杂的组件通讯,我们可以使用<code>vuex</code>的状态管理,来实现全局组件的通讯,但依然会出现页面刷行后 状态管理全重置的问题,我们可以配合<code>localStorage</code>来将其保存,再次加载的时候,先去获取浏览器缓存的东西,做加载</li>
 </ol>
+<h5 id="vue-router的路由模式"><a href="#vue-router的路由模式" class="headerlink" title="vue-router的路由模式"></a>vue-router的路由模式</h5><ul>
+<li>hash模式<br>hash模式中路由的链接带了#号 就模拟的a标签的锚点<br>hash模式除了http请求,后端没有影响,不会重载页面</li>
+<li>history模式<br>history模式中路由的链接不带#号<br>history模式会请求后端资源 前端的 URL 必须和实际向后端发起请求的 URL 一致<h5 id="vue的数据代理"><a href="#vue的数据代理" class="headerlink" title="vue的数据代理"></a>vue的数据代理</h5>数据代理又称数据劫持,vue响应式系统的核心就是数据代理.</li>
+<li>Object.defineProperty(obj,prop,descriptor)<br>这个方法可以精准的添加或修改对象属性,但无法对深层次的数据进行监测,</li>
+<li>proxy<br>针对目标对象会创建一个新的实例对象，并将目标对象代理到新的实例对象上.<br>本质的区别是后者会创建一个新的对象对原对象做代理，外界对原对象的访问，都必须先通过这层代理进行拦截处理。而拦截的结果是我们只要通过操作新的实例对象就能间接的操作真正的目标对象了</li>
+</ul>
 
   
   
@@ -514,10 +520,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-08-30T11:00:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-05-12T10:18:58+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年8月30日</p>
+    <p>更新于：2022年5月12日</p>
   </a>
 </div>
 
@@ -605,10 +611,10 @@ mkdir my 创建名称为my的目录
       
         <a class='next' href='/2021/08/26/element%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F/'>
           <p class='title'>element 组件使用注意<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>表格多选分页问题翻页时候,让表格多选记住上页的已选数据
+          <p class='content'>表格多选分页问题需求:翻页时候,让表格多选记住上页的已选数据
 
 首先我们需要给table组件上加上 row-key 属性绑定数据的唯一键
-在多选组件上加上 reserve-selection 并绑定t...</p>
+在多选组件上加上 reserve-selection 并...</p>
         </a>
       
     </div>
@@ -651,7 +657,7 @@ mkdir my 创建名称为my的目录
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#set%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">$set的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F"><span class="toc-text">组件间通讯方式</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#set%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">$set的使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F"><span class="toc-text">组件间通讯方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vue-router%E7%9A%84%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F"><span class="toc-text">vue-router的路由模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vue%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86"><span class="toc-text">vue的数据代理</span></a></li></ol>
     </div>
   </section>
 

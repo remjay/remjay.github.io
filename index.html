@@ -460,9 +460,110 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2022/05/12/%E7%BD%91%E9%A1%B5%E8%AE%A4%E8%AF%86/">
+        网页认识
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        页面生成过程
+html文件通过html解析器解析成 DOM树
+css文件通过css解析器解析成CSSOM树
+结合DOM和CSSOM树,生成一棵渲染树
+生成布局,即将所有渲染树的所有节点进行平面合成
+将布局绘制在屏幕上
+
+前端搭建模式(单页面模式与多页面模式)
+多页面模式(MPA)页面跳转会造成所有的html css js重新渲染 是多个完整的独立页面组成 适合用于高度追求支持搜索引擎的应用
+...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-05-12</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/05/12/%E7%BD%91%E9%A1%B5%E8%AE%A4%E8%AF%86/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2022/02/16/eletron-study/">
+        eletron-study
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        eletron装包问题 在eletron项目装包时,可能会报错Electron failed to install correctly, please delete node_modules/electron and try installing again 其主要原因是install的时候 node_modules/electron中的文件确实导致程序无法运行
+解决方法:
+执行 npm i...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-02-16</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/02/16/eletron-study/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -527,9 +628,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        判断数据类型的方法typeof
-区分数据类型可以区分7种数据类型:string,number,boolean,object,undefined,function 和es6新增的symbol
-注意    - typeof 返回格式是 string  typeof(typeof(1))    - typeof 判断未定义的变量 返回 undefined    - typeof 判断null 返回...
+        javascript数据类型
+基本数据类型:7种String Number Boolean undefined null Symbel Bigint    - Symbel 表示独一无二的值，主要为了解决属性名冲突问题    - Bigint 是比Number类型的整数范围更大,不需要通过new来使用123456789//当数值超过最大安全值的时候,会无法判断超出值的比较let max=Nu...
       
     
   </div>
@@ -775,12 +875,12 @@ cp file1 file2 将file1复制file2
   <div class='md'>
     
       
-        表格多选分页问题翻页时候,让表格多选记住上页的已选数据
+        表格多选分页问题需求:翻页时候,让表格多选记住上页的已选数据
 
 首先我们需要给table组件上加上 row-key 属性绑定数据的唯一键
 在多选组件上加上 reserve-selection 并绑定true
 在table组件上加上 selection-change 方法 这样就实现了分页记住上页的勾选数据但这可仅仅不够,我们可能需要获取后台的数据,来实现回显
-我们获取到后端数据库存的已选id,由于...
+我们获取到后端数据库存的已选id...
       
     
   </div>

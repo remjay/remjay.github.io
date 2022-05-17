@@ -483,7 +483,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h4 id="css单位"><a href="#css单位" class="headerlink" title="css单位"></a>css单位</h4><p>  分为两种绝对长度与相对长度</p>
+  <h5 id="css单位"><a href="#css单位" class="headerlink" title="css单位"></a>css单位</h5><p>  分为两种绝对长度与相对长度</p>
 <ul>
 <li>绝对长度<ol>
 <li>px 像素 像素是相对于屏幕分辨率的,页面按照精确像素展示,不会因其他元素的变化而变化</li>
@@ -499,10 +499,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>vw 相对于视口*宽度的 1%</li>
 <li>vh 相对于视口*高度的 1%</li>
 <li>em 相对于元素的字体大小（font-size）（2em 表示当前字体大小的 2 倍）</li>
-<li>% 相对于父元素</li>
+<li>% 相对于父元素<h5 id="文字溢出改为省略号"><a href="#文字溢出改为省略号" class="headerlink" title="文字溢出改为省略号"></a>文字溢出改为省略号</h5></li>
 </ol>
 </li>
 </ul>
+<ol>
+<li>单行<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.text</span>&#123;</span><br><span class="line">  <span class="attribute">white-space</span>:nowrap;</span><br><span class="line">  <span class="attribute">overflow</span>:hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>多行<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.all-text</span>&#123;</span><br><span class="line">  <span class="attribute">word-break</span>: break-all;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  -webkit-line-clamp: <span class="number">2</span>;</span><br><span class="line">  -webkit-box-orient: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="弹性盒模型的使用-flex"><a href="#弹性盒模型的使用-flex" class="headerlink" title="弹性盒模型的使用 flex"></a>弹性盒模型的使用 flex</h5>flexbox 是一种一维的布局，是因为一个 flexbox 一次只能处理一个维度上的元素布局，一行或者一列。</li>
+<li>flex-direction 主轴方向<br>   <code>row</code>, <code>row-reverse</code> 行排序 正序,反序<br>   <code>column</code>,<code>column-reverse</code> 列排序 正序,反序</li>
+<li>flex-wrap<br>   <code>wrap</code> 实现多行flex容器</li>
+<li>align-items 可以使元素在交叉轴方向对齐<br>   <code>stretch</code> 弹性元素被在侧轴方向被拉伸到与容器相同的高度或宽度<br>   <code>flex-start</code> 元素向侧轴起点对齐<br>   <code>flex-end</code> 元素向侧轴终点对齐<br>   <code>center</code> 元素在侧轴居中。如果元素在侧轴上的高度高于其容器，那么在两个方向上溢出距离相同。</li>
+<li>justify-content 元素在主轴方向上对齐<br>   <code>stretch</code><br>   <code>flex-start</code>元素向主轴起点对齐<br>   <code>flex-end</code>元素向主轴终点对齐<br>   <code>center</code> 元素在主轴居中<br>   <code>space-around</code> 元素主轴分布起点,终点元素没有间隙<br>   <code>space-between</code> 元素主轴分布起点,终点元素有间隙</li>
+</ol>
+<h5 id="css让文字渐变"><a href="#css让文字渐变" class="headerlink" title="css让文字渐变"></a>css让文字渐变</h5><pre><code><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.text-light</span>&#123; </span><br><span class="line">  <span class="attribute">background-image</span>:<span class="built_in">-webkit-linear-gradient</span>(bottom,red,<span class="number">#fd8403</span>,yellow);</span><br><span class="line">  -webkit-<span class="attribute">background-clip</span>:text;</span><br><span class="line">  -webkit-text-fill-<span class="attribute">color</span>:transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
 
   
   
@@ -522,10 +533,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-19T11:19:25+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-05-17T11:28:07+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年11月19日</p>
+    <p>更新于：2022年5月17日</p>
   </a>
 </div>
 
@@ -600,9 +611,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='prev' href='/2021/11/10/JS-study/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>JS学习笔记</p>
-          <p class='content'>判断数据类型的方法typeof
-区分数据类型可以区分7种数据类型:string,number,boolean,object,undefined,function 和es6新增的symbol
-注意...</p>
+          <p class='content'>javascript数据类型
+基本数据类型:7种String Number Boolean undefined null Symbel Bigint    - Symbel 表示独一无二的值，主...</p>
         </a>
       
       
@@ -658,7 +668,7 @@ react脚手架有两种
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#css%E5%8D%95%E4%BD%8D"><span class="toc-text">css单位</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#css%E5%8D%95%E4%BD%8D"><span class="toc-text">css单位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E6%BA%A2%E5%87%BA%E6%94%B9%E4%B8%BA%E7%9C%81%E7%95%A5%E5%8F%B7"><span class="toc-text">文字溢出改为省略号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8-flex"><span class="toc-text">弹性盒模型的使用 flex</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#css%E8%AE%A9%E6%96%87%E5%AD%97%E6%B8%90%E5%8F%98"><span class="toc-text">css让文字渐变</span></a></li></ol>
     </div>
   </section>
 

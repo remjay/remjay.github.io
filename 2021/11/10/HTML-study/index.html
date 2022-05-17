@@ -483,13 +483,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h4 id="a-标签的五种使用方法"><a href="#a-标签的五种使用方法" class="headerlink" title="a 标签的五种使用方法"></a>a 标签的五种使用方法</h4><ol>
+  <h5 id="a-标签的五种使用方法"><a href="#a-标签的五种使用方法" class="headerlink" title="a 标签的五种使用方法"></a>a 标签的五种使用方法</h5><ol>
 <li>页面跳转(herf设置地址)<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;http://www.baidu.com&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>锚点链接(herf里面#号开头)<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;#zj&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>下载文件(herf填入资源链接地址,并设置download属性设置下载文件名)<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;http://www.baidu.com/img/bd_logo1.png&#x27;</span> <span class="attr">download</span>=<span class="string">&#x27;百度图片.png&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>创建email链接 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;mailto:1727482593@qq.com&#x27;</span>&gt;</span>发邮件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>创建Tel链接<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;tel:12345678&#x27;</span>&gt;</span>拨打电话<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>创建Tel链接<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;tel:12345678&#x27;</span>&gt;</span>拨打电话<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h5>浏览器在渲染过程中,渲染引擎会触发回流和重绘</li>
 </ol>
+<ul>
+<li>回流:当我们将dom元素的大小发生变化,浏览器要重新计算元素大小,这个过程称为 回流</li>
+<li>重绘:当我们仅仅只是改变dom的颜色,此时浏览器不需要重新计算元素大小,这个过程就称为 重绘<br>在两者对比中,显然回流会比重绘更损耗性能</li>
+</ul>
 
   
   
@@ -509,10 +514,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-11-11T17:56:46+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-03-08T21:17:07+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年11月11日</p>
+    <p>更新于：2022年3月8日</p>
   </a>
 </div>
 
@@ -585,12 +590,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
+        <a class='prev' href='/2022/02/16/eletron-study/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>eletron-study</p>
+          <p class='content'>eletron装包问题 在eletron项目装包时,可能会报错Electron failed to install correctly, please delete node_modules/e...</p>
+        </a>
+      
       
         <a class='next' href='/2021/11/10/JS-study/'>
           <p class='title'>JS学习笔记<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>判断数据类型的方法typeof
-区分数据类型可以区分7种数据类型:string,number,boolean,object,undefined,function 和es6新增的symbol
-注意...</p>
+          <p class='content'>javascript数据类型
+基本数据类型:7种String Number Boolean undefined null Symbel Bigint    - Symbel 表示独一无二的值，主...</p>
         </a>
       
     </div>
@@ -633,7 +642,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BA%94%E7%A7%8D%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">a 标签的五种使用方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BA%94%E7%A7%8D%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">a 标签的五种使用方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="toc-text">浏览器渲染过程</span></a></li></ol>
     </div>
   </section>
 

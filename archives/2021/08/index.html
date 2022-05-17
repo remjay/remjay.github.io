@@ -501,12 +501,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md'>
     
       
-        表格多选分页问题翻页时候,让表格多选记住上页的已选数据
+        表格多选分页问题需求:翻页时候,让表格多选记住上页的已选数据
 
 首先我们需要给table组件上加上 row-key 属性绑定数据的唯一键
 在多选组件上加上 reserve-selection 并绑定true
 在table组件上加上 selection-change 方法 这样就实现了分页记住上页的勾选数据但这可仅仅不够,我们可能需要获取后台的数据,来实现回显
-我们获取到后端数据库存的已选id,由于...
+我们获取到后端数据库存的已选id...
       
     
   </div>
