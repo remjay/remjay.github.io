@@ -22,7 +22,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>eletron-study - wjchen&#39;s | blog</title>
+  <title>数据库知识 - wjchen&#39;s | blog</title>
   
 
   
@@ -430,7 +430,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title">
-        eletron-study
+        数据库知识
       </h1>
       <div class='new-meta-box'>
         
@@ -439,7 +439,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <div class='new-meta-item author'>
   <a class='author' href="/" rel="nofollow">
     <img no-lazy src="">
-    <p>请设置文章作者</p>
+    <p>wjchen</p>
   </a>
 </div>
 
@@ -454,7 +454,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2022年2月16日</p>
+    <p>发布于：2022年8月30日</p>
   </a>
 </div>
 
@@ -465,7 +465,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="eletron-study" data-path="/2022/02/16/eletron-study/">
+      <div id="lc-pv" data-title="数据库知识" data-path="/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -483,14 +483,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h5 id="eletron装包问题"><a href="#eletron装包问题" class="headerlink" title="eletron装包问题"></a>eletron装包问题</h5><p> 在eletron项目装包时,可能会报错<code>Electron failed to install correctly, please delete node_modules/electron and try installing again</code> 其主要原因是install的时候 node_modules/electron中的文件确实导致程序无法运行</p>
-<h6 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h6><ol>
-<li>执行 <code>npm install electron-fix -g</code></li>
-<li>接着 <code>electron-fix start</code></li>
-<li><code>npm instal</code></li>
-<li>然后在package.json的scripts加入<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;fix&quot;</span>: <span class="string">&quot;electron-fix start&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>执行 <code>npm run fix</code></li>
-<li>最后再 <code>npm start</code> 或者 <code>yarn start</code></li>
+  <h5 id="数据库索引"><a href="#数据库索引" class="headerlink" title="数据库索引"></a>数据库索引</h5><p>  数据库索引分为四类:稀疏索引,稠密索引,聚集索引,非聚集索引</p>
+<ol>
+<li>稀疏索引<br>只是一部分查找码的值有对应的索引记录</li>
+<li>稠密索引<br><code>每个索引键值都对应一个索引项</code><br>相比稀疏索引:占用空间更小,且插入删除维护开销小</li>
+<li>聚集索引(聚簇索引)<br>聚集索引的顺序就是数据的物理存储顺序,对表的数据按索引键的顺序进行排序,然后重新存储到磁盘上.因为数据在物理存放时只能有一种排列方式,所以一个表只能有一个聚集索引<br> 聚集索引可以重复<br><code>指针索引-&gt;物理磁盘索引,且两者索引都相同</code></li>
+<li>非聚集索引<br>非聚集索引则与聚集索引相反,<code>两者索引不相同</code></li>
+</ol>
+<h5 id="ORDER-BY使用注意"><a href="#ORDER-BY使用注意" class="headerlink" title="ORDER BY使用注意"></a>ORDER BY使用注意</h5><ol>
+<li>order by 语句用于指定的列对结果集进行排序</li>
+<li>order by 语句默认按照升序对记录进行排序 只能作为其他子句之后的最后一个子句出现,子查询语句中是不能使用order by语句的</li>
 </ol>
 
   
@@ -511,10 +513,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-02-17T16:49:35+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-08-30T15:49:56+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2022年2月17日</p>
+    <p>更新于：2022年8月30日</p>
   </a>
 </div>
 
@@ -533,7 +535,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2022/02/16/eletron-study/&title=eletron-study - wjchen's | blog&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86/&title=数据库知识 - wjchen's | blog&summary="
           
           >
           
@@ -545,7 +547,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2022/02/16/eletron-study/&title=eletron-study - wjchen's | blog&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86/&title=数据库知识 - wjchen's | blog&summary="
           
           >
           
@@ -557,7 +559,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2022/02/16/eletron-study/&title=eletron-study - wjchen's | blog&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86/&title=数据库知识 - wjchen's | blog&summary="
           
           >
           
@@ -587,21 +589,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/2022/05/12/%E7%BD%91%E9%A1%B5%E8%AE%A4%E8%AF%86/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>网页认识</p>
+        <a class='prev' href='/2023/03/16/node%E7%9F%A5%E8%AF%86/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>node知识</p>
+          <p class='content'>node包管理  在前端高速发展中,node环境每年都有着更新,而且会导致各种依赖包的版本,需要不同的node环境来支撑,这样就会造成我们需要不同版本的node版本来支撑项目的开发,当前最热门的...</p>
+        </a>
+      
+      
+        <a class='next' href='/2022/05/12/%E7%BD%91%E9%A1%B5%E8%AE%A4%E8%AF%86/'>
+          <p class='title'>网页认识<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
           <p class='content'>页面生成过程
 html文件通过html解析器解析成 DOM树
 css文件通过css解析器解析成CSSOM树
 结合DOM和CSSOM树,生成一棵渲染树
 生成布局,即将所有渲染树的所有节点进行平面合...</p>
-        </a>
-      
-      
-        <a class='next' href='/2021/11/10/HTML-study/'>
-          <p class='title'>HTML学习笔记<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>a 标签的五种使用方法
-页面跳转(herf设置地址)1&lt;a href=&#x27;http://www.baidu.com&#x27;&gt;&lt;/a&gt;
-锚点链接(herf里面#...</p>
         </a>
       
     </div>
@@ -644,7 +644,7 @@ css文件通过css解析器解析成CSSOM树
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#eletron%E8%A3%85%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">eletron装包问题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95"><span class="toc-text">数据库索引</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ORDER-BY%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F"><span class="toc-text">ORDER BY使用注意</span></a></li></ol>
     </div>
   </section>
 
@@ -663,7 +663,7 @@ css文件通过css解析器解析成CSSOM树
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="eletron-study";
+  pdata.postTitle="数据库知识";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
